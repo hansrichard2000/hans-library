@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\CollectionStatus;
+use App\Models\CollectionType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
@@ -26,8 +28,12 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call([
-            UserSeeder::class,
             RoleSeeder::class,
+            UserSeeder::class,
+            CollectionTypeSeeder::class,
+            CollectionStatusSeeder::class,
+            SubjectSeeder::class,
+            CollectionSeeder::class,
         ]);
 
         Model::reguard();

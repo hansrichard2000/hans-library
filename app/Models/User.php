@@ -25,7 +25,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'roleID',
-        'statusID'
+        'is_active'
     ];
 
     /**
@@ -49,5 +49,9 @@ class User extends Authenticatable
 
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+
+    public function loan(){
+        return $this->belongsToMany(Collection::class)->withPivot('is_approved')->withTimestamps();
     }
 }
