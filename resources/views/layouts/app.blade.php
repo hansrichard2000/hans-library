@@ -23,5 +23,15 @@
             @yield('content')
         </main>
     </div>
+
+    <footer class="bg-dark text-white">
+        <div class="container">
+            <div class="row pt-3 pb-3">
+                <div class="col text-center">
+                    Copyright &#169; 2022
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Collection;
-use App\Models\CollectionType;
 use Illuminate\Http\Request;
 
-class CollectionController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +13,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = Collection::latest()->filter(request(['search']))->paginate(7);
-
-//        if (request('search')){
-//            $collections->where('collectionName', 'like', '%'.request('search').'%');
-//        }
-
-        $collectionTypes = CollectionType::all();
-        return view('catalog.index', compact('collections', 'collectionTypes'));
+        //
     }
 
     /**
@@ -32,7 +23,7 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        return view('catalog.create');
+        //
     }
 
     /**
@@ -49,27 +40,21 @@ class CollectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Collection  $collection
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Collection $collection)
+    public function show($id)
     {
-        $collectionShow = Collection::where('id', $collection->id)->first();
-
-        if ($collectionShow == null){
-            abort(404);
-        }
-
-        return view('catalog.show', compact('collectionShow'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Collection  $collection
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Collection $collection)
+    public function edit($id)
     {
         //
     }
@@ -78,10 +63,10 @@ class CollectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Collection  $collection
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Collection $collection)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -89,10 +74,10 @@ class CollectionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Collection  $collection
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Collection $collection)
+    public function destroy($id)
     {
         //
     }

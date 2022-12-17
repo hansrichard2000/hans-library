@@ -76,54 +76,61 @@
             <div class="row">
                 <div class="card-body border-bottom">
                     <h5 class="card-title text-center">Cari Koleksi</h5>
-                    <form class="row" method="POST" action="">
-                        <div class="row row-cols-6">
-                            <div class="col">
-                                <div class="form-group text-center">
-                                    <label for="collectionName">Judul</label>
-                                    <input type="text" class="form-control" id="collectionName" name="collectionName">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group text-center">
-                                    <label for="collectionSubject">Subjek</label>
-                                    <input type="text" class="form-control" id="collectionSubject" name="collectionSubject">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group text-center">
-                                    <label for="collectionAuthor">Pengarang</label>
-                                    <input type="text" class="form-control" id="collectionAuthor" name="collectionAuthor">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group text-center">
-                                    <label for="collectionPublisher">Penerbit</label>
-                                    <input type="text" class="form-control" id="collectionPublisher" name="collectionPublisher">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group text-center">
-                                    <label for="collectionPublishYear">Tahun Terbit</label>
-                                    <input type="text" class="form-control" id="collectionPublishYear" name="collectionPublishYear">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group text-center">
-                                    <label for="collectionType" >Tipe</label>
-                                    <select id="collectionType" name="collectionType" class="custom-select form-control">
-                                        @foreach ($collectionTypes as $collectionType)
-                                            <option value="{{$collectionType->id}}">{{$collectionType->collectionTypeName}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container d-flex justify-content-center align-items-center mt-3">
-                            <input class="btn btn-dark bg-gradient" type="submit" id="search" name="search" value="Search">
+                    <form action="{{route('collection.index')}}">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Cari judul koleksi..." name="search" value="{{request('search')}}">
+                            <button class="btn btn-dark bg-gradient" type="submit" id="button-addon2">Search</button>
                         </div>
                     </form>
+{{--                    <form class="row" method="POST" action="{{route('collection.index')}}">--}}
+{{--                        <div class="row row-cols-6">--}}
+{{--                            <div class="col">--}}
+{{--                                <div class="form-group text-center">--}}
+{{--                                    <label for="collectionName">Judul</label>--}}
+{{--                                    <input type="text" class="form-control" id="collectionName" name="search" value="{{request('search')}}">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col">--}}
+{{--                                <div class="form-group text-center">--}}
+{{--                                    <label for="collectionSubject">Subjek</label>--}}
+{{--                                    <input type="text" class="form-control" id="collectionSubject" name="collectionSubject">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col">--}}
+{{--                                <div class="form-group text-center">--}}
+{{--                                    <label for="collectionAuthor">Pengarang</label>--}}
+{{--                                    <input type="text" class="form-control" id="collectionAuthor" name="author" value="{{request('author')}}">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col">--}}
+{{--                                <div class="form-group text-center">--}}
+{{--                                    <label for="collectionPublisher">Penerbit</label>--}}
+{{--                                    <input type="text" class="form-control" id="collectionPublisher" name="collectionPublisher">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col">--}}
+{{--                                <div class="form-group text-center">--}}
+{{--                                    <label for="collectionPublishYear">Tahun Terbit</label>--}}
+{{--                                    <input type="text" class="form-control" id="collectionPublishYear" name="collectionPublishYear">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col">--}}
+{{--                                <div class="form-group text-center">--}}
+{{--                                    <label for="collectionType" >Tipe</label>--}}
+{{--                                    <select id="collectionType" name="collectionType" class="custom-select form-control">--}}
+{{--                                        @foreach ($collectionTypes as $collectionType)--}}
+{{--                                            <option value="{{$collectionType->id}}">{{$collectionType->collectionTypeName}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="container d-flex justify-content-center align-items-center mt-3">--}}
+{{--                            <input class="btn btn-dark bg-gradient" type="submit" id="search" name="search" value="Search">--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
                 </div>
+                @if($collections->count())
                 <div class="card-body">
                     @foreach($collections as $collection)
                         <article class="mb-5 border-bottom pb-4">
@@ -160,8 +167,14 @@
                         </article>
                     @endforeach
                 </div>
-
+                @else
+                    <p class="text-center fs-4">No post found.</p>
+                @endif
+                <div class="d-flex justify-content-center">
+                    {{ $collections->links() }}
+                </div>
             </div>
         </div>
     </div>
+
 @endsection
