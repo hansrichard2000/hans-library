@@ -55,4 +55,17 @@ class User extends Authenticatable
         return $this->belongsToMany(Collection::class)->withPivot('is_approved')->withTimestamps();
     }
 
+    public function isAdmin(){
+        if ($this->role->name == 'Admin' && $this->is_login == '1'){
+            return true;
+        }
+        return false;
+    }
+
+    public function isMember(){
+        if ($this->role->name == 'Anggota' && $this->is_login == '1'){
+            return true;
+        }
+        return false;
+    }
 }

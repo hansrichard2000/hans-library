@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('userImage')->nullable();
             $table->enum('is_active', ['0', '1'])->default('1');
+            $table->enum('is_login', ['0', '1'])->default('0');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             'address'=>'Citraland',
             'roleID'=>1,
             'is_active'=>'1',
+            'is_login' => '0',
             'password'=>bcrypt('12345678')
         ]);
 

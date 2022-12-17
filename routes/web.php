@@ -26,3 +26,5 @@ Route::resource('collection', CollectionController::class);
 Route::get('author', function () {
     return view('author.index');
 });
+
+Auth::routes();
