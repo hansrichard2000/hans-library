@@ -25,6 +25,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'roleID',
+        'is_login',
         'is_active'
     ];
 
@@ -56,14 +57,14 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-        if ($this->role->name == 'Admin' && $this->is_login == '1'){
+        if ($this->roleID == 1 && $this->is_login == '1'){
             return true;
         }
         return false;
     }
 
     public function isMember(){
-        if ($this->role->name == 'Anggota' && $this->is_login == '1'){
+        if ($this->roleID == 2 && $this->is_login == '1'){
             return true;
         }
         return false;

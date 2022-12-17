@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use voku\helper\ASCII;
 
-class LoanController extends Controller
+class MemberLoanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class LoanController extends Controller
      */
     public function index()
     {
-        $this->authorize('admin');
-        return view('dashboard.loans.index');
+        return view('dashboard.memberLoan');
     }
 
     /**

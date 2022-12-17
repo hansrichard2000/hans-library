@@ -14,7 +14,7 @@ class CollectionTypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.collectionTypes.index');
     }
 
     /**

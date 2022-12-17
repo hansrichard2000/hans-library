@@ -14,7 +14,7 @@ class AdminCollectionController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.collections.index');
     }
 
     /**
