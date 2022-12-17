@@ -21,50 +21,11 @@
 .graduate{
     font-family: 'Graduate';
 }
-.linered{
-    background-color: #e6004c;
-    height: 0.5em;
-}
-.gambarThumbnail{
-    width: 25%;
-    height: 25%;
-    margin-top: 2rem;
-    margin-left: 40%;
-}
-.kartu{
-    width: 21rem;
-}
-.kartuRider{
-    width: 15rem;
-    background-image: linear-gradient(to bottom, #ce0044, #98113a, #64152d, #34121c, #000000);
-}
-.gambarRider{
-    width: 30rem;
-    margin-left: -7rem;
-}
-.flag{
-    width: 2rem;
-    height: 2rem;
-}
-.sideLogo{
-    width: 3em;
-    height: 3em;
-    float: right;
-}
-textarea{
-    height: 5em;
-}
-.kartuDetail{
-    width: 32rem;
-    background-image: linear-gradient(to right, #9a0033, #730e2c, #4d1123, #2a0f16, #000000);
+
+.footerLogin {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
-.riderImg{
-    width: 30rem;
-    margin-left: -7rem;
-}
-
-.back-result{
-    max-width: 12rem;
-    background-image: linear-gradient(to bottom, #ce0044, #98113a, #64152d, #34121c, #000000);
-}

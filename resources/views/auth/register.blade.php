@@ -1,7 +1,66 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
+    <nav class="navbar navbar-expand-md fixed-top text-light navbar-dark bg-dark bg-gradient shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{{route('home.index')}}">
+                <img src="{{asset('storage/hr-transparent-logo.png')}}" width="50" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto">
+                    <li><a class="nav-link" href="{{route('home.index')}}">Beranda</a></li>
+                    <li><a class="nav-link" href="{{route('collection.index')}}">Daftar Koleksi</a></li>
+                    <li><a class="nav-link" href="{{route('author.index')}}">Tentang</a></li>
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br>
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -19,6 +78,20 @@
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="username" class="col-md-4 col-form-label text-md-end">Username</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required>
+
+                                @error('username')
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -61,6 +134,34 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}">
+
+                                @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="address" class="col-md-4 col-form-label text-md-end">Address</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}">
+
+                                @error('address')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -74,4 +175,13 @@
         </div>
     </div>
 </div>
+    <footer class="bg-dark text-white" style="margin-bottom: -5rem">
+        <div class="container">
+            <div class="row pt-3 pb-3">
+                <div class="col text-center">
+                    Copyright &#169; 2022
+                </div>
+            </div>
+        </div>
+    </footer>
 @endsection
