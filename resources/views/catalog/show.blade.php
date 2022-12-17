@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Beranda | Perpustakaan Hans
+    Lihat Koleksi | Perpustakaan Hans
 @endsection
 
 @section('content')
@@ -19,8 +19,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
-                    <li><a class="nav-link active" href="{{route('home.index')}}">Beranda</a></li>
-                    <li><a class="nav-link" href="{{route('collection.index')}}">Daftar Koleksi</a></li>
+                    <li><a class="nav-link" href="{{route('home.index')}}">Beranda</a></li>
+                    <li><a class="nav-link active" href="{{route('collection.index')}}">Daftar Koleksi</a></li>
                     <li><a class="nav-link" href="{{route('author.index')}}">Tentang</a></li>
                 </ul>
 
@@ -63,21 +63,39 @@
             </div>
         </div>
     </nav>
-    <div class="bg-image img-fluid d-flex justify-content-center align-items-center cover">
-        <div class="inner">
-            <h1 class="text-white">Selamat Datang di Persputakaan Hans</h1>
-            <h3 class="text-white">Website ini memberikan informasi koleksi dan layanan peminjaman untuk seluruh literatur yang
-                tersedia</h3>
+    <div class="container">
+        &nbsp;
+    </div>
+    <div class="container mt-5">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="mb-3">{{ $collectionShow->collectionName }}</h1>
+                    </div>
+                    <div class="col">
+                        <a><button type="button" class="btn btn-dark bg-gradient btn-md mt-2"><i
+                                    class="bi bi-book-fill"></i> Pinjam</button></a>
+                    </div>
+                </div>
+
+                <p>By {{$collectionShow->collectionAuthor}}</p>
+
+                @if($collectionShow->collectionImage)
+                    <div style="max-height: 350px; overflow: hidden">
+                        <img src="{{asset('storage/collectionImages/'.$collectionShow->collectionImage)}}" alt="{{ $collectionShow->collectionName }}" class="img-fluid">
+                    </div>
+                @else
+                    <img src="{{asset('storage/images/notAvailable.jpg')}}" alt="{{ $collectionShow->collectionName }}" class="img-fluid">
+                @endif
+
+                <article class="my-3 fs-5">
+                    {!! $collectionShow->collectionDesc !!}
+                </article>
+
+
+                <a href="{{route('collection.index')}}" class='d-block mt-3'>Kembali ke Daftar Koleksi</a>
+            </div>
         </div>
     </div>
-
-    <div class="container d-flex justify-content-center align-items-center">
-        <a href="{{route('collection.index')}}"><button type="button" class="btn btn-dark bg-gradient btn-lg p-3 m-5"><i
-                    class="bi bi-search"></i> Katalog Online</button></a>
-
-        <button type="button" class="btn btn-dark bg-gradient btn-lg p-3 m-5"><i
-                class="bi bi-book-fill"></i> Pinjam Koleksi</button>
-    </div>
 @endsection
-
-

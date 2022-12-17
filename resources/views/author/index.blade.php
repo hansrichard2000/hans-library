@@ -5,12 +5,14 @@
 @endsection
 
 @section('banner')
-    <img src="{{asset('storage/images/FotoKotak.jpg')}}" class="img-fluid img-thumbnail profileImg rounded-circle">
-    <div class="bg-dark text-light text-center mt-4 rounded p mx-auto pt-3 pb-3" style="width:30em">
-        <p>Name : Hans Richard Alim Natadjaja</p>
-        <p>City : Surabaya</p>
-        <p>Date of Birth : 7 November 2000</p>
-        <p>Hobby : Chess</p>
+    <div class="container mt-5">
+        <img src="{{asset('storage/images/FotoKotak.jpg')}}" class="img-fluid img-thumbnail profileImg rounded-circle">
+        <div class="bg-dark text-light text-center mt-4 rounded p mx-auto pt-3 pb-3" style="width:30em">
+            <p>Name : Hans Richard Alim Natadjaja</p>
+            <p>City : Surabaya</p>
+            <p>Date of Birth : 7 November 2000</p>
+            <p>Hobby : Chess</p>
+        </div>
     </div>
 @endsection
 

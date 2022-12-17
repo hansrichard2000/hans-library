@@ -9,32 +9,27 @@
     @vite(['resources/css/author.css', 'resources/js/app.js'])
 </head>
 <body>
-<nav class="navbar navbar-expand-lg fixed-top text-light navbar-dark bg-dark shadow-sm">
+<nav class="navbar navbar-expand-md fixed-top text-light navbar-dark bg-dark bg-gradient shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{asset('images/motogp-white-logo.svg')}}">
+        <a class="navbar-brand" href="{{route('home.index')}}">
+            <img src="{{asset('storage/hr-transparent-logo.png')}}" width="50" height="50">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto text-white">
-                <li><a class="nav-link" href="/">Home</a></li>
-                <li><a class="nav-link" href="/rider">Rider List</a></li>
-                <li><a class="nav-link" href="/team">Teams List</a></li>
-                <li><a class="nav-link" href="/constructor">Constructor List</a></li>
-                @auth
-                    @if(\illuminate\Support\Facades\Auth::user()->isAdmin())
-                        <li><a class="nav-link" href={{route('admin.user.index')}}>Users List</a></li>
-                    @endif
-                @endauth
-                <li><a class="nav-link active" href="/author">Website Maker</a></li>
+            <ul class="navbar-nav me-auto">
+                <li><a class="nav-link" href="{{route('home.index')}}">Beranda</a></li>
+                <li><a class="nav-link" href="{{route('collection.index')}}">Daftar Koleksi</a></li>
+                <li><a class="nav-link  active" href="{{route('author.index')}}">Tentang</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -50,11 +45,12 @@
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

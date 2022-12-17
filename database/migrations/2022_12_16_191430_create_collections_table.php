@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('collectionName');
             $table->string('collectionAuthor');
             $table->string('collectionPublishYear');
+            $table->string('collectionPublisher');
             $table->text('collectionDesc')->nullable();
             $table->string('collectionImage')->nullable();
             $table->unsignedBigInteger('collectionTypeID');

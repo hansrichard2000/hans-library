@@ -20,7 +20,7 @@ class CollectionTypeSeeder extends Seeder
         ]);
 
         CollectionType::create([
-            'collectionTypeName' => 'Rekaman Video'
+            'collectionTypeName' => 'Audio Visual'
         ]);
     }
 }

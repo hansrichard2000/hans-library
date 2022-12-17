@@ -21,6 +21,7 @@ class CollectionFactory extends Factory
             'collectionName' => fake()->sentence(nbWords: 2),
             'collectionAuthor' => fake()->name(),
             'collectionPublishYear' => fake()->year(),
+            'collectionPublisher' => fake()->company(),
             'collectionDesc' => collect($this -> faker->paragraphs(mt_rand(5, 10)))
                 ->map(fn($p)=>"<p>$p</p>")
                 ->implode(''),
