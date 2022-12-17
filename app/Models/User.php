@@ -54,4 +54,5 @@ class User extends Authenticatable
     public function loan(){
         return $this->belongsToMany(Collection::class)->withPivot('is_approved')->withTimestamps();
     }
+
 }
