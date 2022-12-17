@@ -33,9 +33,18 @@
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('loans*') ? 'active' : '' }}" href="{{route('loans.index')}}">
+                    <a class="nav-link {{ Request::is('collections*') ? 'active' : '' }}" href="{{route('collections.index')}}">
                         <i class="bi bi-book-half"></i>
                         Manajemen Koleksi
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('loans*') ? 'active' : '' }}" href="{{route('loans.index')}}">
+                        <i class="bi bi-envelope-fill"></i>
+                        Permintaan Pinjaman
                     </a>
                 </li>
             </ul>
