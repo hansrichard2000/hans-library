@@ -60,7 +60,7 @@ class CollectionController extends Controller
             'expiration_date' => null
         ]);
 
-        return redirect()->route('home.index');
+        return redirect()->route('my-loan.index');
     }
 
     /**
