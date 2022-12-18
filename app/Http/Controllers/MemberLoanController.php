@@ -17,7 +17,7 @@ class MemberLoanController extends Controller
     {
         $loans = Loan::where('userID', '=', Auth::user()->id)->get();
 //        ddd($loan);
-        return view('dashboard.memberLoan', compact('loans'));
+        return view('dashboard.member-loan', compact('loans'));
     }
 
     /**
