@@ -76,13 +76,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="name">Nama Peminjam :</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{$user->email}}" required>
+                                <input type="text" class="form-control" id="name" name="name" value="{{$user->name}}" required disabled>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="email">Email :</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" required>
+                                <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" required disabled>
                             </div>
                         </div>
                     </div>

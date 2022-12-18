@@ -35,7 +35,8 @@
 {{--                            {{ $loan->is_approved }}--}}
                             @if($loan->is_approved == 0) <p class="text-warning">Pending</p>
                             @elseif($loan->is_approved == 1) <p class="text-success">Approved</p>
-                            @else<p class="text-danger">Rejected</p>
+                            @elseif($loan->is_approved == 2) <p class="text-danger">Rejected</p>
+                            @else <p class="text-warning">Expired</p>
                             @endif
                         </td>
                         <td>{{ $loan->loan_date }}</td>
@@ -44,7 +45,7 @@
 
                         <td class="text-center">
                             <div class="row no-gutters">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <form action="{{route('loans.approve')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$loan->id}}">
@@ -52,7 +53,7 @@
                                     </form>
 {{--                                    <a class="btn btn-success" href="{{ route('loans.approve', $loan) }}">Approve</a>--}}
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <form action="{{route('loans.reject')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$loan->id}}">
@@ -60,7 +61,15 @@
                                     </form>
 {{--                                    <a class="btn btn-danger" href="{{ route('loans.reject', $loan) }}">Reject</a>--}}
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <form action="{{route('loans.expire')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$loan->id}}">
+                                        <button class="btn btn-warning" title="Expire" type="submit">Expire</button>
+                                    </form>
+                                    {{--                                    <a class="btn btn-danger" href="{{ route('loans.reject', $loan) }}">Reject</a>--}}
+                                </div>
+                                <div class="col-md-3">
                                     <form action="{{ route('loans.edit', $loan) }}" method="GET">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">Edit</button>

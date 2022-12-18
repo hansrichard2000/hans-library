@@ -139,7 +139,13 @@
                         <article class="mb-5 border-bottom pb-4">
                             <div class="row row-cols-2">
                                 <div class="col-sm-2 ms-5">
-                                    <img class="img-fluid img-thumbnail" src="{{asset('storage/images/notAvailable.jpg')}}" alt="{{$collection->collectionName}}">
+                                    @if($collection->collectionImage)
+                                        <div style="max-height: 350px; overflow: hidden">
+                                            <img src="{{asset('storage/'.$collection->collectionImage)}}" alt="{{ $collection->collectionName }}" class="img-fluid">
+                                        </div>
+                                    @else
+                                        <img src="{{asset('storage/images/notAvailable.jpg')}}" alt="{{ $collection->collectionName }}" class="img-fluid">
+                                    @endif
                                 </div>
                                 <div class="col-lg-9">
                                     <h2>{{$collection->collectionName}}</h2>
@@ -151,8 +157,10 @@
                                         <p class="text-success">Status: {{$collection->collectionStatus->collectionStatusName}}</p>
                                         <a href="{{route('collection.show', $collection)}}"><button type="button" class="btn btn-primary btn-sm"><i
                                                     class="bi bi-eyeglasses"></i> Lihat</button></a>
-                                        <a><button type="button" class="btn btn-dark bg-gradient btn-sm"><i
+                                    @cannot('admin')
+                                        <a href="{{route('collection.create')}}"><button type="button" class="btn btn-dark bg-gradient btn-sm"><i
                                                     class="bi bi-book-fill"></i> Pinjam</button></a>
+                                        @endcannot
                                     @elseif($collection->collectionStatus->id == 2)
                                         <p class="text-danger">Status: {{$collection->collectionStatus->collectionStatusName}}</p>
                                         <a href="{{route('collection.show', $collection)}}"><button type="button" class="btn btn-primary btn-sm"><i

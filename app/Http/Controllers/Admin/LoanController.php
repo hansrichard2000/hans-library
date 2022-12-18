@@ -20,7 +20,7 @@ class LoanController extends Controller
      */
     public function index()
     {
-        $loans = Loan::all();
+        $loans = Loan::orderBy('id', 'DESC')->get();
         return view('dashboard.loans.index', compact('loans'));
     }
 
@@ -149,6 +149,19 @@ class LoanController extends Controller
         ]);
         $collection->update([
             'collectionStatusID' => 2
+        ]);
+        return redirect()->back();
+    }
+
+    public function expire(Request $request){
+        $task = Loan::findOrFail($request->id);
+//        ddd($task);
+        $collection = Collection::where('id','=',$task->collectionID)->first();
+        $task->update([
+            'is_approved' => '3',
+        ]);
+        $collection->update([
+            'collectionStatusID' => 1
         ]);
         return redirect()->back();
     }
