@@ -97,14 +97,12 @@ class UserController extends Controller
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ];
 
         $validatedData = $request->validate($rules);
 
         $user->update([
             'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
             'phone' => $request['phone'],
             'address' => $request['address'],
             'roleID' => $request['role']
