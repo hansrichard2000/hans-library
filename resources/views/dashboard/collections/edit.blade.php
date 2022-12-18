@@ -108,6 +108,19 @@
                 <trix-editor input="collectionDesc"></trix-editor>
             </div>
 
+            <div class="mb-3">
+                <label for="collectionStatus" class="form-label">Status Koleksi</label>
+                <select class="form-select" name="collectionStatus">
+                    @foreach ($collectionStatuses as $collectionStatus)
+                        @if (old('collectionStatus', $collection->collectionStatusID) === $collectionStatus->id)
+                            <option value="{{ $collectionStatus->id }}" selected>{{ $collectionStatus->collectionStatusName }}</option>
+                        @else
+                            <option value="{{ $collectionStatus->id }}">{{ $collectionStatus->collectionStatusName }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-dark bg-gradient">Submit</button>
         </form>
     </div>

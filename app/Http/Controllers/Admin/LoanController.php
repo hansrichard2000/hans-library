@@ -88,13 +88,14 @@ class LoanController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  \App\Models\Loan  $loan
+     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Loan  $loan
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Loan $loan)
     {
+
         $loan->update([
             'userID' => $request->name,
             'collectionID' => $request->collectionID,
