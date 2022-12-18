@@ -48,16 +48,6 @@
                     </a>
                 </li>
             </ul>
-
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('subjects*') ? 'active' : '' }}" href="{{route('subjects.index')}}">
-                        <i class="bi bi-grid"></i>
-                        Daftar Subjek
-                    </a>
-                </li>
-            </ul>
-
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('collection-type*') ? 'active' : '' }}" href="{{route('collection-type.index')}}">

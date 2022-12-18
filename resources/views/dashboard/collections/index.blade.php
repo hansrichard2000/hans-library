@@ -52,7 +52,7 @@
 
                             <form action="{{ route('collections.destroy', $collection->id) }}" method="POST">
                                 <a class="btn btn-info" href="{{ route('collections.show', $collection->id) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('collections.edit', $collection->id) }}">Edit</a>
+                                <a class="btn btn-primary" href="{{ route('collections.edit', $collection) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

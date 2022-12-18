@@ -7,7 +7,8 @@
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1>Daftar Tipe Koleksi</h1>
-        {{--        <h1 class="h2">Welcome back, Test</h1>--}}
+        <a href="{{route('collection-type.create')}}"><button type="button" class="btn btn-dark bg-gradient btn-md p-3 me-4"><i
+                    class="bi bi-file-plus"></i> Tambah Tipe Koleksi</button></a>
     </div>
     <div class="container">
         <div class="table-responsive">
@@ -26,13 +27,7 @@
                         <td>{{ $collectionType->id }}</td>
                         <td>{{ $collectionType->collectionTypeName }}</td>
                         <td class="text-center">
-                            <form action="{{ route('collections.destroy', $collectionType->id) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('collections.show', $collectionType) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('collections.edit', $collectionType->id) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
+                            <a class="btn btn-primary" href="{{ route('collection-type.edit', $collectionType) }}">Edit</a>
                         </td>
                     </tr>
                 @endforeach

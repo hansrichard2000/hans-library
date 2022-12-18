@@ -77,9 +77,10 @@
     <div class="container d-flex justify-content-center align-items-center">
         <a href="{{route('collection.index')}}"><button type="button" class="btn btn-dark bg-gradient btn-lg p-3 m-5"><i
                     class="bi bi-search"></i> Katalog Online</button></a>
-        
+        @cannot('admin')
         <a href="{{route('collection.create')}}"><button type="button" class="btn btn-dark bg-gradient btn-lg p-3 m-5"><i
                     class="bi bi-book-fill"></i> Pinjam Koleksi</button></a>
+        @endcannot
     </div>
 @endsection
 

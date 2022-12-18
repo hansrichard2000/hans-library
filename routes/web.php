@@ -39,17 +39,16 @@ Route::resource('my-loan', MemberLoanController::class)->middleware('member');
 
 Route::resource('collections', AdminCollectionController::class)->middleware('admin');
 
-Route::resource('subjects', SubjectController::class)->middleware('admin');
-
 Route::resource('collection-type', CollectionTypeController::class)->middleware('admin');
 
 Route::resource('loans', LoanController::class)->middleware('admin');
 Route::post('loans/reject', [LoanController::class, 'reject'])->name('loans.reject');
 Route::post('loans/approve', [LoanController::class, 'approve'])->name('loans.approve');
+Route::post('loans/expire', [LoanController::class, 'expire'])->name('loans.expire');
 
 Route::resource('users', UserController::class)->middleware('admin');
 
-Route::post('users/suspend', [UserController::class, 'suspend'])->name('users.suspend');
-Route::post('users/active', [UserController::class, 'active'])->name('users.active');
+//Route::post('users/suspend', [UserController::class, 'suspend'])->name('users.suspend');
+//Route::post('users/active', [UserController::class, 'active'])->name('users.active');
 
 Auth::routes();
