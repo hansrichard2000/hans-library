@@ -47,7 +47,7 @@
                                 <div class="col-md-4">
                                     <form action="{{route('loans.approve')}}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="loan" value="{{$loan->id}}">
+                                        <input type="hidden" name="id" value="{{$loan->id}}">
                                         <button class="btn btn-success" title="Approve" type="submit">Approve</button>
                                     </form>
 {{--                                    <a class="btn btn-success" href="{{ route('loans.approve', $loan) }}">Approve</a>--}}
@@ -55,13 +55,13 @@
                                 <div class="col-md-4">
                                     <form action="{{route('loans.reject')}}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="loan" value="{{$loan->id}}">
+                                        <input type="hidden" name="id" value="{{$loan->id}}">
                                         <button class="btn btn-danger" title="Reject" type="submit">Reject</button>
                                     </form>
 {{--                                    <a class="btn btn-danger" href="{{ route('loans.reject', $loan) }}">Reject</a>--}}
                                 </div>
                                 <div class="col-md-4">
-                                    <form action="{{ route('loans.edit', $loan->id) }}" method="GET">
+                                    <form action="{{ route('loans.edit', $loan) }}" method="GET">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">Edit</button>
                                     </form>

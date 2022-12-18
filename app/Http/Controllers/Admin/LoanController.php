@@ -32,7 +32,7 @@ class LoanController extends Controller
     public function create()
     {
         $users = User::where('roleID','=',2)->get();
-        $collections = Collection::all();
+        $collections = Collection::where('collectionStatusID','=','1')->get();
         return view('dashboard.loans.create',compact('users', 'collections'));
     }
 
@@ -46,11 +46,17 @@ class LoanController extends Controller
     {
         $dateNow = Carbon::now();
         Loan::create([
-            'userID' => $request->userID,
+            'userID' => $request->name,
             'collectionID' => $request->collectionID,
-            'is_approve' => '1',
+            'is_approved' => '1',
             'loan_date' => Carbon::now(),
             'expiration_date' => $dateNow->addDays(7),
+        ]);
+
+        $collection = Collection::findOrFail($request->collectionID);
+
+        $collection->update([
+            'collectionStatusID' => 2
         ]);
 
         return redirect()->route('loans.index')->with('success', 'Your new post has been added!');
@@ -69,25 +75,32 @@ class LoanController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * @param  \App\Models\Loan  $loan
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Loan $loan)
     {
-        //
+        $users = User::where('roleID','=',2)->get();
+        $collections = Collection::all();
+        return view('dashboard.loans.edit', compact('loan', 'users', 'collections'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
+     * @param  \App\Models\Loan  $loan
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Loan $loan)
     {
-        //
+        $loan->update([
+            'userID' => $request->name,
+            'collectionID' => $request->collectionID,
+        ]);
+
+        return redirect()->route('loans.index');
     }
 
     /**
@@ -104,7 +117,7 @@ class LoanController extends Controller
     public function reject(Request $request){
 
         $task = Loan::findOrFail($request->id);
-        $collection = Collection::findOrFail($request->collectionID);
+        $collection = Collection::where('id','=',$task->collectionID)->first();
         $task->update([
             'is_approved' => '2',
             'loan_date' => null,
@@ -115,11 +128,20 @@ class LoanController extends Controller
         ]);
         return redirect()->back();
     }
-
+//
+//    /**
+//     * Update the specified resource in storage.
+//     * @param  \App\Models\Loan  $loan
+//     * @param  \Illuminate\Http\Request  $request
+//     * @param  int  $id
+//     * @return \Illuminate\Http\Response
+//     */
     public function approve(Request $request){
+
         $dateNow = Carbon::now();
         $task = Loan::findOrFail($request->id);
-        $collection = Collection::findOrFail($request->collectionID);
+//        ddd($task);
+        $collection = Collection::where('id','=',$task->collectionID)->first();
         $task->update([
             'is_approved' => '1',
             'loan_date' => Carbon::now(),

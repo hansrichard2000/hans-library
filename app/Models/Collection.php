@@ -36,8 +36,10 @@ class Collection extends Model
         'collectionCode',
         'collectionName',
         'collectionAuthor',
+        'collectionPublisher',
         'collectionPublishYear',
         'collectionDesc',
+        'collectionImage',
         'collectionTypeID',
         'collectionStatusID'
     ];

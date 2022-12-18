@@ -44,9 +44,9 @@ class AdminCollectionController extends Controller
             'collectionCode' => 'required|max:255',
             'collectionAuthor' => 'required|max:255',
             'collectionPublisher' => 'required|max:255',
-            'collectionPublishType' => 'required|max:255',
+            'collectionPublishYear' => 'required|max:255',
             'collectionType' => 'required',
-            'collectionImage' => 'image|file|max:2048',
+            'collectionImage' => 'image',
             'collectionDesc' => 'required',
         ]);
 
@@ -58,9 +58,11 @@ class AdminCollectionController extends Controller
             'collectionCode' => $validatedData['collectionCode'],
             'collectionName' => $validatedData['collectionName'],
             'collectionAuthor' => $validatedData['collectionAuthor'],
+            'collectionPublisher' => $validatedData['collectionPublisher'],
             'collectionPublishYear' => $validatedData['collectionPublishYear'],
             'collectionDesc' => $validatedData['collectionDesc'],
             'collectionTypeID' => $validatedData['collectionType'],
+            'collectionImage' => $validatedData['collectionImage'],
             'collectionStatusID' => '1'
         ]);
 

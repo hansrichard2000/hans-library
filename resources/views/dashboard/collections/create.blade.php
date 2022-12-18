@@ -10,13 +10,13 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="{{'collections.store'}}" class="mb-5" enctype="multipart/form-data">
+        <form method="POST" action="{{route('collections.store')}}" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="collectionName" class="form-label">Judul Koleksi</label>
                 <input type="text" class="form-control @error('collectionName') is-invalid @enderror" id="collectionName" name="collectionName"
                        required autofocus value="{{ old('collectionName') }}">
-                @error('title')
+                @error('collectionName')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="collectionCode" class="form-label">Kode Koleksi</label>
-                <input type="text" class="form-control @error('collectionCode') is-invalid @enderror" id="collectionCode" name="collectionAuthor"
+                <input type="text" class="form-control @error('collectionCode') is-invalid @enderror" id="collectionCode" name="collectionCode"
                        required value="{{ old('collectionCode') }}">
                 @error('collectionCode')
                 <div class="invalid-feedback">

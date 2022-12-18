@@ -40,7 +40,7 @@ class CollectionController extends Controller
             return redirect()->route('login');
         }
         $user = Auth::user();
-        $collections = Collection::all();
+        $collections = Collection::where('collectionStatusID','=','1')->get();
         return view('catalog.create', compact('user', 'collections'));
     }
 

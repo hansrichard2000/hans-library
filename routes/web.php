@@ -44,8 +44,8 @@ Route::resource('subjects', SubjectController::class)->middleware('admin');
 Route::resource('collection-type', CollectionTypeController::class)->middleware('admin');
 
 Route::resource('loans', LoanController::class)->middleware('admin');
-Route::post('reject', [LoanController::class, 'reject'])->name('loans.reject');
-Route::post('approve', [LoanController::class, 'approve'])->name('loans.approve');
+Route::post('loans/reject', [LoanController::class, 'reject'])->name('loans.reject');
+Route::post('loans/approve', [LoanController::class, 'approve'])->name('loans.approve');
 
 Route::resource('users', UserController::class)->middleware('admin');
 

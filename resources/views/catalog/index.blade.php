@@ -154,7 +154,7 @@
                                         <a><button type="button" class="btn btn-dark bg-gradient btn-sm"><i
                                                     class="bi bi-book-fill"></i> Pinjam</button></a>
                                     @elseif($collection->collectionStatus->id == 2)
-                                        <p class="text-danger">Status: {{$collection->collectionStatus->collectionStatusName}} oleh {{$collection->borrower->name}}</p>
+                                        <p class="text-danger">Status: {{$collection->collectionStatus->collectionStatusName}}</p>
                                         <a href="{{route('collection.show', $collection)}}"><button type="button" class="btn btn-primary btn-sm"><i
                                                     class="bi bi-eyeglasses"></i> Lihat</button></a>
                                     @else

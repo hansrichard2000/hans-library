@@ -94,7 +94,7 @@
 
                 @if($collectionShow->collectionImage)
                     <div style="max-height: 350px; overflow: hidden">
-                        <img src="{{asset('storage/collectionImages/'.$collectionShow->collectionImage)}}" alt="{{ $collectionShow->collectionName }}" class="img-fluid">
+                        <img src="{{asset('storage/'.$collectionShow->collectionImage)}}" alt="{{ $collectionShow->collectionName }}" class="img-fluid">
                     </div>
                 @else
                     <img src="{{asset('storage/images/notAvailable.jpg')}}" alt="{{ $collectionShow->collectionName }}" class="img-fluid">

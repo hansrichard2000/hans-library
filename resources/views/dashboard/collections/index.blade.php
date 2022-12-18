@@ -39,7 +39,7 @@
                         @if($collection->collectionStatusID == 1)
                             <td class="text-success">{{ $collection->collectionStatus->collectionStatusName }}</td>
                         @elseif($collection->collectionStatusID == 2)
-                            <td class="text-danger">{{ $collection->collectionStatus->collectionStatusName }} oleh {{ $collection->borrower->name }}</td>
+                            <td class="text-danger">{{ $collection->collectionStatus->collectionStatusName }}</td>
                         @else
                             <td class="text-info">{{ $collection->collectionStatus->collectionStatusName }}</td>
                         @endif
