@@ -10,12 +10,31 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * Controller for Daftar Pengguna Page
+ *
+ * @author Hans Richard Alim Natadjaja
+ * * @version 1.0, 18/12/22
+ */
+
 class UserController extends Controller
 {
+
+    /*
+    |--------------------------------------------------------------------------
+    | UserController
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles for the application and
+    | redirecting to User List Management. The controller uses a resource convention
+    | based from Laravel to conveniently provide its functionality for CRUD.
+    |
+    */
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -26,7 +45,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -38,7 +57,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -77,8 +96,8 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      * @param \App\Models\User $user
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(User $user)
     {
@@ -88,10 +107,10 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param \App\Models\User $user
+     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {
@@ -115,7 +134,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -138,6 +157,11 @@ class UserController extends Controller
 
         return redirect()->route('collections.index')->with('success', 'User has been deleted!');
     }
+
+    /**
+     * Function bellow not applicable for now...
+     *
+     */
 
 //    public function suspend(Request $request){
 //        $user = User::findOrFail($request->id);

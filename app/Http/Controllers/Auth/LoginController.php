@@ -9,6 +9,13 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Controller for Login Page
+ *
+ * @author Hans Richard Alim Natadjaja
+ * * @version 1.0, 18/12/22
+ */
+
 class LoginController extends Controller
 {
     /*

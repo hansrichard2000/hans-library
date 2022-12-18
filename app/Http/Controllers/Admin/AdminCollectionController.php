@@ -10,12 +10,30 @@ use App\Models\Loan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Controller for Manajemen Koleksi Page
+ *
+ * @author Hans Richard Alim Natadjaja
+ * * @version 1.0, 18/12/22
+ */
+
 class AdminCollectionController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | AdminCollectionController
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles for the application and
+    | redirecting to Collection Control Panel. The controller uses a resource convention based from Laravel
+    | to conveniently provide its functionality for CRUD.
+    |
+    */
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -26,7 +44,7 @@ class AdminCollectionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -38,7 +56,7 @@ class AdminCollectionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
