@@ -19,8 +19,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'phone',
+        'address',
+        'roleID',
+        'is_login',
+        'is_active'
     ];
 
     /**
@@ -41,4 +47,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role(){
+        return $this->belongsTo(Role::class, 'roleID', 'id');
+    }
+
+    public function borrower(){
+        return $this->hasMany(Loan::class, 'collectionID', 'id');
+    }
+
+    public function isAdmin(){
+        if ($this->roleID == 1 && $this->is_login == '1'){
+            return true;
+        }
+        return false;
+    }
+
+    public function isMember(){
+        if ($this->roleID == 2 && $this->is_login == '1'){
+            return true;
+        }
+        return false;
+    }
 }
