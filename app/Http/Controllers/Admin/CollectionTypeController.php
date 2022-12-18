@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CollectionType;
 use Illuminate\Http\Request;
 
 class CollectionTypeController extends Controller
@@ -14,7 +15,8 @@ class CollectionTypeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.collectionTypes.index');
+        $collectionTypes = CollectionType::all();
+        return view('dashboard.collectionTypes.index', compact('collectionTypes'));
     }
 
     /**

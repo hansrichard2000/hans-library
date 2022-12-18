@@ -20,6 +20,9 @@
                 <ul class="navbar-nav me-auto">
                     <li><a class="nav-link" href="{{route('home.index')}}">Beranda</a></li>
                     <li><a class="nav-link active" href="{{route('collection.index')}}">Daftar Koleksi</a></li>
+                    @auth
+                        <li><a class="nav-link" href="{{route('dashboard.index')}}">Dashboard</a></li>
+                    @endauth
                     <li><a class="nav-link" href="{{route('author.index')}}">Tentang</a></li>
                 </ul>
 
@@ -69,70 +72,30 @@
             <div class="card-body">
                 <form action="{{route('collection.store')}}" method="POST">
                     @csrf
-                    <div class="row row-cols-2">
+                    <div class="row row-cols-2 m-3">
                         <div class="col">
                             <div class="form-group">
-                                <label for="collection" class="text-light">Rider's Name :</label>
-                                <input type="" class="form-control" id="name" name="name" required>
+                                <label for="name">Nama Peminjam :</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{$user->email}}" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="number" class="text-light">Race Number :</label>
-                                <input type="number" class="form-control" id="number" name="number" required>
+                                <label for="email">Email :</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" required>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="nation" class="text-light">Nation :</label>
-                        <input type="text" class="form-control" id="nation" name="nation" required>
+                    <div class="form-group m-4">
+                        <label for="name">Koleksi Yang Dipinjam :</label>
+                        <select id="collectionID" name="collectionID" class="custom-select form-control">
+                            @foreach ($collections as $collection)
+                                <option value="{{$collection->id}}">{{$collection->collectionCode}} {{$collection->collectionName}} - {{$collection->collectionType->collectionTypeName}}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="row row-cols-2">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="date" class="text-light">Date of Birth :</label>
-                                <input type="date" class="form-control" id="date" name="date">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="place" class="text-light">Place of Birth :</label>
-                                <input type="text" class="form-control" id="place" name="place">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-cols-2">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="height" class="text-light">Heigth (cm):</label>
-                                <input type="number" class="form-control" id="height" name="height">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="weight" class="text-light">Weigth (kg):</label>
-                                <input type="number" class="form-control" id="weight" name="weight">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="podiums" class="text-light">Podiums:</label>
-                        <input type="number" class="form-control" id="podiums" name="podiums">
-                    </div>
-                    <div class="form-group">
-                        <label for="wins" class="text-light">Wins :</label>
-                        <input type="number" class="form-control" id="wins" name="wins">
-                    </div>
-                    <div class="form-group">
-                        <label for="title" class="text-light">World Championship Title:</label>
-                        <input type="number" class="form-control" id="title" name="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="text-light">Description : </label>
-                        <textarea rows="4" class="form-control" id="description" name="description"></textarea>
-                    </div>
-{{--                    <input type="hidden" name="created_by" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">--}}
-                    <input class="btn btn-primary" type="submit" id="submit" name="submit" value="Submit">
+                    <input type="hidden" name="userID" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
+                    <input class="btn btn-primary ms-4" type="submit" id="submit" name="submit" value="Submit">
                 </form>
             </div>
         </div>

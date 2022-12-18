@@ -49,11 +49,11 @@ class User extends Authenticatable
     ];
 
     public function role(){
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'roleID', 'id');
     }
 
-    public function loan(){
-        return $this->belongsToMany(Collection::class)->withPivot('is_approved')->withTimestamps();
+    public function borrower(){
+        return $this->hasMany(Loan::class, 'collectionID', 'id');
     }
 
     public function isAdmin(){

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Loan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemberLoanController extends Controller
 {
@@ -13,7 +15,9 @@ class MemberLoanController extends Controller
      */
     public function index()
     {
-        return view('dashboard.memberLoan');
+        $loans = Loan::where('userID', '=', Auth::user()->id)->get();
+//        ddd($loan);
+        return view('dashboard.memberLoan', compact('loans'));
     }
 
     /**

@@ -54,9 +54,7 @@ class Collection extends Model
         return $this->belongsToMany(Subject::class)->withTimestamps();
     }
 
-    public function borrower(){
-        return $this->belongsToMany(User::class)->withPivot('is_approved')->withPivot('is_approved');
+    public function loan(){
+        return $this->hasMany(Loan::class, 'userID', 'id');
     }
-
-
 }

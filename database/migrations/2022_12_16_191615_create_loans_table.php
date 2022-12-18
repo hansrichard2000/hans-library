@@ -26,8 +26,8 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade');
             $table->enum('is_approved', ['0', '1', '2'])->default('0')->comment('0 = Pending, 1 = Approved, 2 = Rejected');
-            $table->timestamp('loan_date')->default(\DB::raw('CURRENT_TIMESTAMP'));;
-            $table->timestamp('expiration_date')->default(\DB::raw('CURRENT_TIMESTAMP'));;
+            $table->timestamp('loan_date')->default(\DB::raw('CURRENT_TIMESTAMP'))->nullable();
+            $table->timestamp('expiration_date')->default(\DB::raw('CURRENT_TIMESTAMP'))->nullable();
         });
     }
 

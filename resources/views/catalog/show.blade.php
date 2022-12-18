@@ -21,6 +21,9 @@
                 <ul class="navbar-nav me-auto">
                     <li><a class="nav-link" href="{{route('home.index')}}">Beranda</a></li>
                     <li><a class="nav-link active" href="{{route('collection.index')}}">Daftar Koleksi</a></li>
+                    @auth
+                        <li><a class="nav-link" href="{{route('dashboard.index')}}">Dashboard</a></li>
+                    @endauth
                     <li><a class="nav-link" href="{{route('author.index')}}">Tentang</a></li>
                 </ul>
 
@@ -73,10 +76,18 @@
                     <div class="col">
                         <h1 class="mb-3">{{ $collectionShow->collectionName }}</h1>
                     </div>
+                    @can('member')
                     <div class="col">
-                        <a><button type="button" class="btn btn-dark bg-gradient btn-md mt-2"><i
+                        <a href="{{route('collection.create')}}"><button type="button" class="btn btn-dark bg-gradient btn-md mt-2"><i
                                     class="bi bi-book-fill"></i> Pinjam</button></a>
                     </div>
+                    @endcan
+                    @can('admin')
+                        <div class="col">
+                            <a href="{{route('collections.edit', $collectionShow)}}"><button type="button" class="btn btn-primary btn-md mt-2"><i
+                                        class="bi bi-pen-fill"></i> Edit</button></a>
+                        </div>
+                    @endcan
                 </div>
 
                 <p>By {{$collectionShow->collectionAuthor}}</p>

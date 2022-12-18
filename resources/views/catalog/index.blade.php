@@ -21,6 +21,9 @@
                 <ul class="navbar-nav me-auto">
                     <li><a class="nav-link" href="{{route('home.index')}}">Beranda</a></li>
                     <li><a class="nav-link active" href="{{route('collection.index')}}">Daftar Koleksi</a></li>
+                    @auth
+                        <li><a class="nav-link" href="{{route('dashboard.index')}}">Dashboard</a></li>
+                    @endauth
                     <li><a class="nav-link" href="{{route('author.index')}}">Tentang</a></li>
                 </ul>
 
@@ -151,7 +154,7 @@
                                         <a><button type="button" class="btn btn-dark bg-gradient btn-sm"><i
                                                     class="bi bi-book-fill"></i> Pinjam</button></a>
                                     @elseif($collection->collectionStatus->id == 2)
-                                        <p class="text-danger">Status: {{$collection->collectionStatus->collectionStatusName}}</p>
+                                        <p class="text-danger">Status: {{$collection->collectionStatus->collectionStatusName}} oleh {{$collection->borrower->name}}</p>
                                         <a href="{{route('collection.show', $collection)}}"><button type="button" class="btn btn-primary btn-sm"><i
                                                     class="bi bi-eyeglasses"></i> Lihat</button></a>
                                     @else

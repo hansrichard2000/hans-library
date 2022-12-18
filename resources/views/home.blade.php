@@ -21,6 +21,9 @@
                 <ul class="navbar-nav me-auto">
                     <li><a class="nav-link active" href="{{route('home.index')}}">Beranda</a></li>
                     <li><a class="nav-link" href="{{route('collection.index')}}">Daftar Koleksi</a></li>
+                    @auth
+                        <li><a class="nav-link" href="{{route('dashboard.index')}}">Dashboard</a></li>
+                    @endauth
                     <li><a class="nav-link" href="{{route('author.index')}}">Tentang</a></li>
                 </ul>
 

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\CollectionType;
+use App\Models\Loan;
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
@@ -32,7 +36,12 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        return view('catalog.create');
+        if (auth()->guest()){
+            return redirect()->route('login');
+        }
+        $user = Auth::user();
+        $collections = Collection::all();
+        return view('catalog.create', compact('user', 'collections'));
     }
 
     /**
@@ -43,7 +52,15 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Loan::create([
+           'userID' => $request->userID,
+           'collectionID' => $request->collectionID,
+           'is_approve' => '0',
+            'loan_date' => null,
+            'expiration_date' => null
+        ]);
+
+        return redirect()->route('home.index');
     }
 
     /**

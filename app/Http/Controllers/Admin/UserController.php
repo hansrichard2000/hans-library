@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('dashboard.users.index');
+        $users = User::all();
+        return view('dashboard.users.index', compact('users'));
     }
 
     /**
@@ -81,5 +83,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function suspend(Request $request){
+        $user = User::findOrFail($request->id);
+        $user->update(['is_active' => '0']);
+        return redirect()->back();
+    }
+
+    public function active(Request $request){
+        $user = User::findOrFail($request->id);
+        $user->update(['is_active' => '1']);
+        return redirect()->back();
     }
 }
