@@ -10,7 +10,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-
+    <link rel="icon" type="image/png" href="{{asset('storage/hr-transparent-logo.png')}}">
 
     <!-- Custom styles for this template -->
     @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])

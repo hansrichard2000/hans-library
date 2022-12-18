@@ -39,8 +39,8 @@
                         <td>{{ $user->is_active }}</td>
                         <td>{{ $user->is_login }}</td>
                         <td class="text-center">
-                            <form action="{{ route('collections.destroy', $user->id) }}" method="POST">
-                                <a class="btn btn-primary" href="{{ route('collections.edit', $user->id) }}">Edit</a>
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                <a class="btn btn-primary" href="{{ route('users.edit', $user) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

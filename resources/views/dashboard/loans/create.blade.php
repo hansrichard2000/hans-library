@@ -7,8 +7,6 @@
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1>Tambah Peminjaman Koleksi</h1>
-        <a href="{{route('loans.create')}}"><button type="button" class="btn btn-dark bg-gradient btn-md p-3 me-4"><i
-                    class="bi bi-file-plus"></i> Tambah Peminjaman</button></a>
     </div>
 
     <div class="card shadow p-3 mb-5 bg-body rounded">

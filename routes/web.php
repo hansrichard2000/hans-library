@@ -48,7 +48,7 @@ Route::post('loans/expire', [LoanController::class, 'expire'])->name('loans.expi
 
 Route::resource('users', UserController::class)->middleware('admin');
 
-Route::post('users/suspend', [UserController::class, 'suspend'])->name('users.suspend');
-Route::post('users/active', [UserController::class, 'active'])->name('users.active');
+//Route::post('users/suspend', [UserController::class, 'suspend'])->name('users.suspend');
+//Route::post('users/active', [UserController::class, 'active'])->name('users.active');
 
 Auth::routes();

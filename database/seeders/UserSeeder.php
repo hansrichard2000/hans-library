@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Hans Richard',
-            'username' => 'hansrich2000',
             'email'=>'hansrichard2000@yahoo.com',
             'phone'=>'08123456789',
             'address'=>'Citraland',

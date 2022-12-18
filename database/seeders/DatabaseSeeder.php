@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CollectionTypeSeeder::class,
             CollectionStatusSeeder::class,
-            SubjectSeeder::class,
             CollectionSeeder::class,
         ]);
 

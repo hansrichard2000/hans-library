@@ -68,7 +68,7 @@ class AdminCollectionController extends Controller
             'collectionStatusID' => '1'
         ]);
 
-        return redirect()->route('collections.index')->with('success', 'Your new post has been added!');
+        return redirect()->route('collections.index')->with('success', 'Your new collection has been added!');
     }
 
     /**
@@ -157,8 +157,10 @@ class AdminCollectionController extends Controller
 
         $loans = Loan::where('collectionID','=',$id)->get();
 
-        foreach ($loans as $loan){
-            $loan->delete();
+        if ($loans->count()){
+            foreach ($loans as $loan){
+                $loan->delete();
+            }
         }
 
         return redirect()->route('collections.index')->with('success', 'Your post has been deleted!');
