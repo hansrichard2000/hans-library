@@ -1,12 +1,12 @@
 @extends('dashboard.layouts.main')
 
 @section('title')
-    Tambah Koleksi | Perpustakaan Hans
+    Edit Koleksi | Perpustakaan Hans
 @endsection
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Tambah Koleksi Baru</h1>
+        <h1 class="h2">Edit Koleksi</h1>
     </div>
 
     <div class="col-lg-8">
@@ -106,6 +106,19 @@
                 @enderror
                 <input id="collectionDesc" type="hidden" name="collectionDesc" value="{{ old('collectionDesc', $collection->collectionDesc) }}">
                 <trix-editor input="collectionDesc"></trix-editor>
+            </div>
+
+            <div class="mb-3">
+                <label for="collectionStatus" class="form-label">Status Koleksi</label>
+                <select class="form-select" name="collectionStatus">
+                    @foreach ($collectionStatuses as $collectionStatus)
+                        @if (old('collectionStatus', $collection->collectionStatusID) === $collectionStatus->id)
+                            <option value="{{ $collectionStatus->id }}" selected>{{ $collectionStatus->collectionStatusName }}</option>
+                        @else
+                            <option value="{{ $collectionStatus->id }}">{{ $collectionStatus->collectionStatusName }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
 
             <button type="submit" class="btn btn-dark bg-gradient">Submit</button>

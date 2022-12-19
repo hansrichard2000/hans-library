@@ -11,6 +11,7 @@
     <div class="card shadow p-3 mb-5 bg-body rounded">
         <div class="card-body">
             <form action="{{route('users.update', $user)}}" method="POST">
+                @method('put')
                 @csrf
                 <div class="form-group m-4">
                     <div class="form-group">
@@ -29,7 +30,7 @@
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                               required autofocus value="{{ old('email', $user->email) }}">
+                               disabled autofocus value="{{ old('email', $user->email) }}">
                         @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -44,6 +45,20 @@
                         <input type="address" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
                                autofocus value="{{ old('address', $user->address) }}">
                         @error('address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                </div>
+
+                <div class="form-group m-4">
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone"
+                               autofocus value="{{ old('phone', $user->phone) }}">
+                        @error('phone')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

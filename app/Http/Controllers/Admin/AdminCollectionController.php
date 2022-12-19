@@ -4,17 +4,36 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Collection;
+use App\Models\CollectionStatus;
 use App\Models\CollectionType;
 use App\Models\Loan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Controller for Manajemen Koleksi Page
+ *
+ * @author Hans Richard Alim Natadjaja
+ * * @version 1.0, 18/12/22
+ */
+
 class AdminCollectionController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | AdminCollectionController
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles for the application and
+    | redirecting to Collection Control Panel. The controller uses a resource convention based from Laravel
+    | to conveniently provide its functionality for CRUD.
+    |
+    */
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -25,7 +44,7 @@ class AdminCollectionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -37,7 +56,7 @@ class AdminCollectionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -54,19 +73,30 @@ class AdminCollectionController extends Controller
 
         if($request->file('collectionImage')){
             $validatedData['collectionImage'] = $request->file('collectionImage')->store('collectionImages');
-        }
 
-        Collection::create([
-            'collectionCode' => $validatedData['collectionCode'],
-            'collectionName' => $validatedData['collectionName'],
-            'collectionAuthor' => $validatedData['collectionAuthor'],
-            'collectionPublisher' => $validatedData['collectionPublisher'],
-            'collectionPublishYear' => $validatedData['collectionPublishYear'],
-            'collectionDesc' => $validatedData['collectionDesc'],
-            'collectionTypeID' => $validatedData['collectionType'],
-            'collectionImage' => $validatedData['collectionImage'],
-            'collectionStatusID' => '1'
-        ]);
+            Collection::create([
+                'collectionCode' => $validatedData['collectionCode'],
+                'collectionName' => $validatedData['collectionName'],
+                'collectionAuthor' => $validatedData['collectionAuthor'],
+                'collectionPublisher' => $validatedData['collectionPublisher'],
+                'collectionPublishYear' => $validatedData['collectionPublishYear'],
+                'collectionDesc' => $validatedData['collectionDesc'],
+                'collectionTypeID' => $validatedData['collectionType'],
+                'collectionImage' => $validatedData['collectionImage'],
+                'collectionStatusID' => '1'
+            ]);
+        }else{
+            Collection::create([
+                'collectionCode' => $validatedData['collectionCode'],
+                'collectionName' => $validatedData['collectionName'],
+                'collectionAuthor' => $validatedData['collectionAuthor'],
+                'collectionPublisher' => $validatedData['collectionPublisher'],
+                'collectionPublishYear' => $validatedData['collectionPublishYear'],
+                'collectionDesc' => $validatedData['collectionDesc'],
+                'collectionTypeID' => $validatedData['collectionType'],
+                'collectionStatusID' => '1'
+            ]);
+        }
 
         return redirect()->route('collections.index')->with('success', 'Your new collection has been added!');
     }
@@ -91,13 +121,13 @@ class AdminCollectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      * @param \App\Models\Collection  $collection
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Collection $collection)
     {
         $collectionTypes = CollectionType::all();
-        return view('dashboard.collections.edit', compact('collection', 'collectionTypes'));
+        $collectionStatuses = CollectionStatus::all();
+        return view('dashboard.collections.edit', compact('collection', 'collectionTypes', 'collectionStatuses'));
     }
 
     /**
@@ -118,6 +148,7 @@ class AdminCollectionController extends Controller
             'collectionType' => 'required',
             'collectionImage' => 'image',
             'collectionDesc' => 'required',
+            'collectionStatus' => 'required',
         ];
 
         $validatedData = $request->validate($rules);
@@ -127,19 +158,30 @@ class AdminCollectionController extends Controller
                 Storage::delete($request->oldImage);
             }
             $validatedData['collectionImage'] = $request->file('collectionImage')->store('collectionImage');
-        }
 
-        $collection->update([
-            'collectionCode' => $validatedData['collectionCode'],
-            'collectionName' => $validatedData['collectionName'],
-            'collectionAuthor' => $validatedData['collectionAuthor'],
-            'collectionPublisher' => $validatedData['collectionPublisher'],
-            'collectionPublishYear' => $validatedData['collectionPublishYear'],
-            'collectionDesc' => $validatedData['collectionDesc'],
-            'collectionTypeID' => $validatedData['collectionType'],
-            'collectionImage' => $validatedData['collectionImage'],
-            'collectionStatusID' => '1'
-        ]);
+            $collection->update([
+                'collectionCode' => $validatedData['collectionCode'],
+                'collectionName' => $validatedData['collectionName'],
+                'collectionAuthor' => $validatedData['collectionAuthor'],
+                'collectionPublisher' => $validatedData['collectionPublisher'],
+                'collectionPublishYear' => $validatedData['collectionPublishYear'],
+                'collectionDesc' => $validatedData['collectionDesc'],
+                'collectionTypeID' => $validatedData['collectionType'],
+                'collectionImage' => $validatedData['collectionImage'],
+                'collectionStatusID' => $validatedData['collectionStatus']
+            ]);
+        }else{
+            $collection->update([
+                'collectionCode' => $validatedData['collectionCode'],
+                'collectionName' => $validatedData['collectionName'],
+                'collectionAuthor' => $validatedData['collectionAuthor'],
+                'collectionPublisher' => $validatedData['collectionPublisher'],
+                'collectionPublishYear' => $validatedData['collectionPublishYear'],
+                'collectionDesc' => $validatedData['collectionDesc'],
+                'collectionTypeID' => $validatedData['collectionType'],
+                'collectionStatusID' => $validatedData['collectionStatus']
+            ]);
+        }
 
         return redirect()->route('collections.index')->with('success', 'Your collection has been updated!');
     }

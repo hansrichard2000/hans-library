@@ -6,12 +6,31 @@ use App\Http\Controllers\Controller;
 use App\Models\CollectionType;
 use Illuminate\Http\Request;
 
+/**
+ * Controller for Tipe Koleksi Page
+ *
+ * @author Hans Richard Alim Natadjaja
+ * * @version 1.0, 18/12/22
+ */
+
 class CollectionTypeController extends Controller
 {
+
+    /*
+    |--------------------------------------------------------------------------
+    | CollectionTypeController
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles for the application and
+    | redirecting to Collection Type Control Panel. The controller uses a resource convention
+    | based from Laravel to conveniently provide its functionality for CRUD.
+    |
+    */
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -22,7 +41,7 @@ class CollectionTypeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -33,7 +52,7 @@ class CollectionTypeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -60,8 +79,8 @@ class CollectionTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      * @param \App\Models\CollectionType $collectionType
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return @return \Illuminate\Contracts\View\View
      */
     public function edit(CollectionType $collectionType)
     {
@@ -70,10 +89,10 @@ class CollectionTypeController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param \App\Models\CollectionType  $collectionType
+     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\CollectionType  $collectionType
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, CollectionType $collectionType)
     {
@@ -98,5 +117,6 @@ class CollectionTypeController extends Controller
      */
     public function destroy($id)
     {
+        //
     }
 }
