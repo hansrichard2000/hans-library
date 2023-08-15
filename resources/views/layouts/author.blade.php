@@ -6,7 +6,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" href="{{asset('storage/hr-transparent-logo.png')}}">
-    @vite(['resources/css/author.css', 'resources/js/app.js'])
+{{--    @vite(['resources/css/author.css', 'resources/js/app.js'])--}}
+    <!-- Scripts -->
+    {{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/author.css') }}" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-md fixed-top text-light navbar-dark bg-dark bg-gradient shadow-sm">

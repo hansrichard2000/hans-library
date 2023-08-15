@@ -13,7 +13,12 @@
     <link rel="icon" type="image/png" href="{{asset('storage/hr-transparent-logo.png')}}">
 
     <!-- Custom styles for this template -->
-    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
+{{--    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])--}}
+    <!-- Scripts -->
+    <script src="{{ asset('js/dashboard.js') }}" defer></script>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
