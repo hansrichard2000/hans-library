@@ -15,11 +15,11 @@
     <link rel="icon" type="image/png" href="{{asset('storage/hr-transparent-logo.png')}}">
 
     <!-- Scripts -->
-{{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
 </head>
 <body>

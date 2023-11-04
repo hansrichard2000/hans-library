@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Loan extends Model
 {
@@ -13,11 +14,13 @@ class Loan extends Model
 
     public $timestamps = false;
 
-    public function loan(){
+    public function loan(): BelongsTo
+    {
         return $this->belongsTo(Collection::class, 'collectionID', 'id');
     }
 
-    public function borrower(){
+    public function borrower(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'userID', 'id');
     }
 

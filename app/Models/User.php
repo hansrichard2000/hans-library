@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,22 +49,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role(){
+    public function role(): BelongsTo
+    {
         return $this->belongsTo(Role::class, 'roleID', 'id');
     }
 
-    public function borrower(){
+    public function borrower(): HasMany
+    {
         return $this->hasMany(Loan::class, 'collectionID', 'id');
     }
 
-    public function isAdmin(){
+    public function isAdmin(): bool
+    {
         if ($this->roleID == 1 && $this->is_login == '1'){
             return true;
         }
         return false;
     }
 
-    public function isMember(){
+    public function isMember(): bool
+    {
         if ($this->roleID == 2 && $this->is_login == '1'){
             return true;
         }

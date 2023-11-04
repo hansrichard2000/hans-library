@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Collection extends Model
 {
@@ -56,7 +57,8 @@ class Collection extends Model
         return $this->belongsToMany(Subject::class)->withTimestamps();
     }
 
-    public function loan(){
+    public function loan(): HasMany
+    {
         return $this->hasMany(Loan::class, 'userID', 'id');
     }
 }

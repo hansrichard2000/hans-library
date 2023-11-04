@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CollectionStatus extends Model
 {
@@ -13,7 +14,8 @@ class CollectionStatus extends Model
         'collectionStatusName',
     ];
 
-    public function collectionTarget(){
+    public function collectionTarget(): HasMany
+    {
         return $this->hasMany(Collection::class, 'collectionStatusID', 'id');
     }
 }
